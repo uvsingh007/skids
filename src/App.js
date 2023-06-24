@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-import Form from './components/Form';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import uuid from 'react-uuid';
-import Users from './components/Users';
+import FormScreen from './screens/FormScreen';
+import UserScreen from './screens/UserScreen';
 
 function App() {
   const [users, setUsers] = useState([
@@ -33,8 +33,8 @@ function App() {
     <div className="App">
     <Router>
       <Routes>
-        <Route exact path="/" element={ <Users users={users} setUsers={setUsers} />}></Route>
-        <Route exact path="/form" element={ <Form users={users} setUsers={setUsers} />}></Route>
+        <Route exact path="/" element={ <UserScreen users={users} setUsers={setUsers} />}></Route>
+        <Route exact path="/form" element={ <FormScreen users={users} setUsers={setUsers} />}></Route>
       </Routes>
     </Router>
     {/* <Form users={users} setUsers={setUsers} /> */}
