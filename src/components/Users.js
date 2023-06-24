@@ -23,15 +23,15 @@ const Users = ({ users, setUsers }) => {
 
 const Card = ({ data }) => {
   return (
-    <div className="text-white w-full sm:w-2/3 md:w-1/2 lg:w-2/5 p-[6vw] lg:p-[4vw] bg-gray-700/[0.30] backdrop-blur-md rounded-xl shadow-2xl ">
-      <div className="absolute flex top-2 right-10">
+    <div className="flex flex-col gap-5 text-white w-full sm:w-2/3 md:w-1/2 lg:w-2/5 p-[6vw] lg:p-[4vw] bg-gray-700/[0.30] backdrop-blur-md rounded-xl shadow-2xl ">
+      <div className="absolute flex top-5 right-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-6 h-6 text-amber-500"
+          className="w-6 h-6 text-amber-500 mr-5"
         >
           <path
             strokeLinecap="round"
