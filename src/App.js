@@ -6,6 +6,7 @@ import FormScreen from "./screens/FormScreen";
 import UserScreen from "./screens/UserScreen";
 
 function App() {
+  // used useState to store user data and passing all of them down to components via props
   const [users, setUsers] = useState([
     {
       id: uuid(),

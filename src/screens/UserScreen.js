@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import UserCard from "../components/UserCard";
 
 const UserScreen = ({ users, setUsers }) => {
+  // used navigate to jump on form page
   const navigate = useNavigate();
   return (
     <div className="bg-pattern bg-cover bg-fixed min-h-[100vh]">

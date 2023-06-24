@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Form from "./Form";
 
 const UserCard = ({ data, users, setUsers }) => {
+  //used useState to whether show the user detail or form 
   const [show, setShow] = useState(false);
+  // use remove function here so that the user prop will be filtered 
   const removeUser = () => {
     setUsers(users.filter((item) => data.id !== item.id));
   };

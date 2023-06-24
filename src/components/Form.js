@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import uuid from "react-uuid";
 const Form = ({ users, setUsers, submissionType, id }) => {
+  //used four refs for input tags
   const fNameRef = useRef(null);
   const lNameRef = useRef(null);
   const emailRef = useRef(null);
   const phoneRef = useRef(null);
+  // used usestate to display error tags
   const [messages, setMessages] = useState({
     fName: false,
     lName: false,
@@ -15,6 +16,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     phone: false,
   });
 
+  // to check the submission type whether its from user page or form page
   const submit = () => {
     if (submissionType == "add") {
       checkInputData();
@@ -23,6 +25,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
+  // edit the data if submission type is edit
   const editData = () => {
     const fName = checkFName();
     const lName = checkLName();
@@ -53,6 +56,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
+  // check input data if the submit type add
   const checkInputData = () => {
     const fName = checkFName();
     const lName = checkLName();
@@ -78,6 +82,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
+  // checks firstname 
   const checkFName = () => {
     const fName = fNameRef.current?.value;
     const onlyAlphabets = /^[a-zA-Z\s]*$/;
@@ -90,6 +95,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
+    // checks Lastname 
   const checkLName = () => {
     const lName = lNameRef.current?.value;
     const onlyAlphabets = /^[a-zA-Z\s]*$/;
@@ -102,6 +108,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
+  // checks Email format
   const checkEmail = () => {
     const email = emailRef.current?.value;
     const validEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -115,6 +122,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
+  // checks phone number length
   const checkPhone = () => {
     const phone = phoneRef.current?.value;
 
