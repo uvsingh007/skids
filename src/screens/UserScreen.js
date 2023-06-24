@@ -17,7 +17,12 @@ const UserScreen = ({ users, setUsers }) => {
       <ToastContainer />
       <div className="flex flex-col gap-10 items-center w-full pt-20 pb-10">
         {users.map((item) => (
-          <UserCard key={item.id} data={item} users={users} setUsers={setUsers} />
+          <UserCard
+            key={item.id}
+            data={item}
+            users={users}
+            setUsers={setUsers}
+          />
         ))}
       </div>
     </div>
