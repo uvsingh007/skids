@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import { ToastContainer } from "react-toastify";
 import UserCard from "../components/UserCard";
+import ErrorScreen from "./ErrorScreen";
 
 const UserScreen = ({ users, setUsers }) => {
   // used navigate to jump on form page
@@ -17,14 +18,14 @@ const UserScreen = ({ users, setUsers }) => {
       </button>
       <ToastContainer />
       <div className="flex flex-col gap-10 items-center w-full pt-20 pb-10">
-        {users.map((item) => (
+        {users.length?users.map((item) => (
           <UserCard
             key={item.id}
             data={item}
             users={users}
             setUsers={setUsers}
           />
-        ))}
+        )): <ErrorScreen/>}
       </div>
     </div>
   );

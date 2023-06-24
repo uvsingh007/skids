@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Form from "../components/Form";
 const FormScreen = ({ users, setUsers }) => {
-  // used navigate to jump on home page
   const navigate = useNavigate();
 
   return (
