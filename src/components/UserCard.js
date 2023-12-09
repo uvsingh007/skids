@@ -78,11 +78,7 @@ const UserCard = ({ data, users, setUsers }) => {
             value={selectedDateTime}
             onChange={handleDateTimeChange}
           />
-          <button className="block mt-3 p-2 bg-white text-black rounded-md" onClick={()=>{setShowAppointment(false); setUsers(users.map((item)=>{
-            if(data.id==item.id){
-              data.appointments.push({dateTime:"1"});
-            }
-          }))}}>Submit</button>
+          <button className="block mt-3 p-2 bg-white text-black rounded-md" onClick={()=>{setShowAppointment(false)}}>Submit</button>
         </div>
 
         <button className={`${!showAppointment?"bg-amber-500 p-2 w-48":"hidden"}`} onClick={showAppointment ? () => setShowAppointment(false) : () => setShowAppointment(true)}>

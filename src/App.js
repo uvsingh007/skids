@@ -12,19 +12,22 @@ function App() {
       id: uuid(),
       fName: "Baburao",
       lName: "Ganpatrao Apte",
-      loc:"Delhi"
+      loc:"Delhi",
+      appointments:[{id:uuid(),dateTime:"null"},{id:uuid(),dateTime:"null"}]
     },
     {
       id: uuid(),
       fName: "Raghu",
       lName: "Nandan",
-      loc:"Delhi"
+      loc:"Delhi",
+      appointments:[{id:uuid(),dateTime:"null"},{id:uuid(),dateTime:"null"}]
     },
     {
       id: uuid(),
       fName: "Ganesh",
       lName: "N/A",
-      loc:"Delhi"
+      loc:"Delhi",
+      appointments:[{id:uuid(),dateTime:"null"},{id:uuid(),dateTime:"null"}]
     },
   ]);
   return (
