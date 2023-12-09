@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import Form from "./Form";
+import DateTimePicker from "./DateTimePicker";
+import uuid from "react-uuid";
 
 const UserCard = ({ data, users, setUsers }) => {
   //used useState to whether show the user detail or form 
+  const [selectedDateTime, setSelectedDateTime] = useState('');
+  const handleDateTimeChange = (e) => {
+    setSelectedDateTime(e.target.value);
+  };
   const [show, setShow] = useState(false);
+  const [showAppointment, setShowAppointment] = useState(false);
   // use remove function here so that the user prop will be filtered 
   const removeUser = () => {
     setUsers(users.filter((item) => data.id !== item.id));
@@ -53,13 +60,35 @@ const UserCard = ({ data, users, setUsers }) => {
           <div>{data.lName}</div>
         </div>
         <div className="flex">
-          <div className="mr-4">Emai ID :</div>
-          <div>{data.email}</div>
+          <div className="mr-4">Location :</div>
+          <div>{data.loc}</div>
         </div>
         <div className="flex">
-          <div className="mr-4">Contact No. :</div>
-          <div>{data.phone}</div>
+          <div className="mr-4">Apointments :</div>
+          <div>{
+            data.appointments.map((data)=><div>{data.dateTime}</div>)
+          }</div>
         </div>
+        <div className={`${showAppointment?"":"hidden"}`}>
+          <label htmlFor="datetimepicker">Select Date and Time : </label>
+          <input
+            className="bg-transparent"
+            type="datetime-local"
+            id="datetimepicker"
+            value={selectedDateTime}
+            onChange={handleDateTimeChange}
+          />
+          <button className="block mt-3 p-2 bg-white text-black rounded-md" onClick={()=>{setShowAppointment(false); setUsers(users.map((item)=>{
+            if(data.id==item.id){
+              data.appointments.push({dateTime:"1"});
+            }
+          }))}}>Submit</button>
+        </div>
+
+        <button className={`${!showAppointment?"bg-amber-500 p-2 w-48":"hidden"}`} onClick={showAppointment ? () => setShowAppointment(false) : () => setShowAppointment(true)}>
+          Add Apointments
+        </button>
+        
       </div>
       <div className={`${show ? "" : "hidden"}`}>
         <Form

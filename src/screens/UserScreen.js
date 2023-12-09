@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "../components/Form";
 import { ToastContainer } from "react-toastify";
 import UserCard from "../components/UserCard";
 import ErrorScreen from "./ErrorScreen";
@@ -12,9 +11,9 @@ const UserScreen = ({ users, setUsers }) => {
     <div className="bg-pattern bg-cover bg-fixed min-h-[100vh]">
       <button
         onClick={() => navigate("/form")}
-        className="text-Black z-10 absolute border-2 top-6 left-10 bg-amber-500 p-2 rounded-2xl font-bold text-xl cursor-pointer"
+        className="text-Black z-10 absolute border-2 top-6 left-10   p-2 rounded-2xl font-bold text-xl cursor-pointer"
       >
-        Form
+        Add Clients
       </button>
       <ToastContainer />
       <div className="flex flex-col gap-10 items-center w-full pt-20 pb-10">

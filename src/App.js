@@ -12,22 +12,19 @@ function App() {
       id: uuid(),
       fName: "Baburao",
       lName: "Ganpatrao Apte",
-      email: "Baburaoganpatraoapte@gmail.com",
-      phone: 9999999999,
+      loc:"Delhi"
     },
     {
       id: uuid(),
       fName: "Raghu",
       lName: "Nandan",
-      email: "MerePecheVo@gmail.com",
-      phone: 9999999999,
+      loc:"Delhi"
     },
     {
       id: uuid(),
       fName: "Ganesh",
       lName: "N/A",
-      email: "chotiGangaMeKudaDiya@gmail.com",
-      phone: 9999999999,
+      loc:"Delhi"
     },
   ]);
   return (

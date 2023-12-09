@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+// import DateTimePicker from 'react-date-picker';
+import DateTimePicker from 'react-datetime-picker';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import uuid from "react-uuid";
@@ -6,14 +8,16 @@ const Form = ({ users, setUsers, submissionType, id }) => {
   //used four refs for input tags
   const fNameRef = useRef(null);
   const lNameRef = useRef(null);
-  const emailRef = useRef(null);
-  const phoneRef = useRef(null);
+    const Ref = useRef(null);
+    // const phoneRef = useRef(null);
+  const locRef=useRef(null);
   // used usestate to display error tags
   const [messages, setMessages] = useState({
     fName: false,
     lName: false,
-    email: false,
-    phone: false,
+    loc:false,
+    // email: false,
+    // phone: false,
   });
 
   // to check the submission type whether its from user page or form page
@@ -29,9 +33,10 @@ const Form = ({ users, setUsers, submissionType, id }) => {
   const editData = () => {
     const fName = checkFName();
     const lName = checkLName();
-    const email = checkEmail();
-    const phone = checkPhone();
-    if (!fName.message && !lName.message && !email.message && !phone.message) {
+    const loc = checkLoc();
+    // const email = checkEmail();
+    // const phone = checkPhone();
+    if (!fName.message && !lName.message && !loc.message) {
       setUsers(
         users.map((item) => {
           if (item.id == id) {
@@ -39,20 +44,21 @@ const Form = ({ users, setUsers, submissionType, id }) => {
               id: uuid(),
               fName: fName.value,
               lName: lName.value,
-              email: email.value,
-              phone: phone.value,
+              loc:loc.value,
+              // email: email.value,
+              // phone: phone.value,
             };
           } else {
             return item;
           }
         })
       );
-      toast.success("User edited successfully");
+      toast.success("Client edited successfully");
       console.log(users);
     } else {
       console.log(users);
 
-      toast.error("Enter User details correctly!!");
+      toast.error("Enter Client details correctly!!");
     }
   };
 
@@ -60,25 +66,27 @@ const Form = ({ users, setUsers, submissionType, id }) => {
   const checkInputData = () => {
     const fName = checkFName();
     const lName = checkLName();
-    const email = checkEmail();
-    const phone = checkPhone();
-    if (!fName.message && !lName.message && !email.message && !phone.message) {
+    const loc = checkLoc();
+    // const email = checkEmail();
+    // const phone = checkPhone();
+    if (!fName.message && !lName.message && !loc.message) {
       setUsers([
         ...users,
         {
           id: uuid(),
           fName: fName.value,
           lName: lName.value,
-          email: email.value,
-          phone: phone.value,
+          loc:loc.value,
+          // email: email.value,
+          // phone: phone.value,
         },
       ]);
-      toast.success("User added successfully");
+      toast.success("Client added successfully");
       console.log(users);
     } else {
       console.log(users);
 
-      toast.error("Enter User details correctly!!");
+      toast.error("Enter Client details correctly!!");
     }
   };
 
@@ -108,32 +116,44 @@ const Form = ({ users, setUsers, submissionType, id }) => {
     }
   };
 
-  // checks Email format
-  const checkEmail = () => {
-    const email = emailRef.current?.value;
-    const validEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (validEmailFormat.test(email)) {
-      setMessages({ ...messages, email: false });
-      return { message: false, value: email };
+  const checkLoc = () => {
+    const loc = locRef.current?.value;
+    const onlyAlphabets = /^[a-zA-Z\s]*$/;
+    if (onlyAlphabets.test(loc) && loc.trim()) {
+      setMessages({ ...messages, loc: false });
+      return { message: false, value: loc };
     } else {
-      setMessages({ ...messages, email: true });
+      setMessages({ ...messages, loc: true });
       return { message: true };
     }
   };
+
+  // checks Email format
+  // const checkEmail = () => {
+  //   const email = emailRef.current?.value;
+  //   const validEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  //   if (validEmailFormat.test(email)) {
+  //     setMessages({ ...messages, email: false });
+  //     return { message: false, value: email };
+  //   } else {
+  //     setMessages({ ...messages, email: true });
+  //     return { message: true };
+  //   }
+  // };
 
   // checks phone number length
-  const checkPhone = () => {
-    const phone = phoneRef.current?.value;
+  // const checkPhone = () => {
+  //   const phone = phoneRef.current?.value;
 
-    if (phone.length === 10) {
-      setMessages({ ...messages, phone: false });
-      return { message: false, value: phone };
-    } else {
-      setMessages({ ...messages, phone: true });
-      return { message: true };
-    }
-  };
+  //   if (phone.length === 10) {
+  //     setMessages({ ...messages, phone: false });
+  //     return { message: false, value: phone };
+  //   } else {
+  //     setMessages({ ...messages, phone: true });
+  //     return { message: true };
+  //   }
+  // };
 
   return (
     <form className="flex flex-col gap-10">
@@ -207,53 +227,19 @@ const Form = ({ users, setUsers, submissionType, id }) => {
         </div>
       </div>
       <div className="">
-        <label htmlFor="email" className="font-medium mr-4">
-          Email :
+        <label htmlFor="loc" className="font-medium mr-4">
+          Location :
         </label>
         <input
-          ref={emailRef}
-          id="email"
-          className="autofill:bg-transparent bg-transparent border-b selec focus:outline-none pl-2 w-1/2"
-          type="email"
-          onChange={() => checkEmail()}
-        />
-        <div
-          className={`${
-            messages.email ? "block" : "hidden"
-          } text-red-600 font-medium flex justify-center ml-10 mt-1`}
-        >
-          {" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-            />
-          </svg>
-          Enter the email correctly!!
-        </div>
-      </div>
-      <div className="">
-        <label htmlFor="phone" className="font-medium mr-4">
-          Contact :
-        </label>
-        <input
-          ref={phoneRef}
-          id="phone"
+          ref={locRef}
+          id="loc"
           className="bg-transparent border-b focus:outline-none pl-2 w-1/2"
-          type="number"
-          onChange={() => checkPhone()}
+          type="text"
+          onChange={() => checkLoc()}
         />
         <div
           className={`${
-            messages.phone ? "block" : "hidden"
+            messages.loc ? "block" : "hidden"
           } text-red-600 font-medium flex justify-center ml-10 mt-1`}
         >
           {" "}
@@ -271,7 +257,7 @@ const Form = ({ users, setUsers, submissionType, id }) => {
               d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
             />
           </svg>
-          Must be a 10-digit contact number!!
+          Enter the Location correctly!!
         </div>
       </div>
       <button
@@ -282,7 +268,9 @@ const Form = ({ users, setUsers, submissionType, id }) => {
         {" "}
         Submit
       </button>
+      
     </form>
+    
   );
 };
 

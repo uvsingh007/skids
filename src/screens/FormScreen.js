@@ -12,7 +12,7 @@ const FormScreen = ({ users, setUsers }) => {
         onClick={() => navigate("/")}
         className="text-black border-2 z-10 border-amber-500 absolute top-6 left-10 bg-white p-2 rounded-2xl font-bold text-xl cursor-pointer"
       >
-        Users
+        Clients
       </button>
       <ToastContainer />
       <div className="w-full sm:w-5/6 md:w-2/3 h-auto bg-gray-700/[0.25] backdrop-blur-md rounded-xl shadow-2xl pb-10 ">
